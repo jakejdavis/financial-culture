@@ -1,0 +1,6 @@
+.DS_Store
+.vscode
+__pycache__
+old_models
+models
+pools.p
