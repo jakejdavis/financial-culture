@@ -4,10 +4,11 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 
 class Model:
-    model = Sequential()
-    fitness = 0
+    
     
     def __init__(self, weights = None):
+        self.model = Sequential()
+        self.fitness = 0
         self.create()
         if weights != None:
             for i, layer_weights in enumerate(weights):

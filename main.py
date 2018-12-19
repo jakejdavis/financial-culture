@@ -35,8 +35,8 @@ def main():
         for pool in pools:
             pool.generate_population()
 
-        with open(args.save,'wb') as f:
-            pickle.dump(pools, f)
+        #with open(args.save,'wb') as f:
+            #pickle.dump(pools, f)
     else:
         print("[Pool LOAD] Loading pools...")
 
@@ -65,7 +65,9 @@ def main():
     print("[Pool TRAIN] Unloaded model train finished")
     
             
-            
+    if args.eval == "yes":
+        for pool in pools:
+            pool.predict([0]*49)
 
 
     ## Repeat 

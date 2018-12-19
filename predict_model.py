@@ -9,7 +9,7 @@ import numpy as np
 from model import Model
 from interpret import values_from_tag
 
-LOSS = "categorical_crossentropy"
+LOSS = "mean_squared_error"
 OPTIMIZER = "adam"
 
 in_out_neurons = 2  
@@ -20,13 +20,12 @@ class PredictModel(Model):
 
     def create(self):
         
-        #input_shape = values_from_tag("EOD/DIS")[0][0].shape
-        #self.model.add(GRU(3, input_shape=(149, 2), return_sequences=True))
-        #self.model.add(Dense(32, activation='relu'))
-        #self.model.add(Dense(1, activation='linear'))
-
-        self.model.add(Dense(32, activation='relu',input_shape=(149, 2)))
+        input_shape = values_from_tag("EOD/DIS")[0][0].shape
+        self.model.add(GRU(3, input_shape=input_shape, return_sequences=True))
+        self.model.add(Dense(32, activation='relu'))
+        self.model.add(Flatten())
         self.model.add(Dense(1, activation='linear'))
+
         self.model.summary()
         self.compile()
 
